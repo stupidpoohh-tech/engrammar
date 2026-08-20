@@ -73,6 +73,8 @@ npm run check    # 콘텐츠만 점검 (챕터 수·유형 분포 요약 출력)
   - 구버전 `engquiz.progress.v1` 은 처음 한 번 자동으로 옮겨온다.
 - 기기 간 동기화는 없다. 대신 `#/settings` 에서 JSON 으로 내보내고 불러올 수 있다.
 - PWA — 설치·오프라인 학습이 된다. 서비스워커는 `vite-plugin-pwa` 가 만든다.
+- 방문 통계는 Cloudflare Web Analytics 뿐이고 `VITE_CF_BEACON_TOKEN` 이 있을 때만 붙는다
+  (`src/lib/analytics.js`). 학습 기록은 서버로 나가지 않는다.
 
 ---
 
@@ -183,6 +185,9 @@ HTML 문자열이 아니라 구조화된 블록이다. 검색·인쇄·스타일
 | `#/grammar` · `#/grammar/:id` | 문법 모아보기 — 검색 + 챕터별 링크 |
 | `#/stats` | 학습 통계 |
 | `#/settings` | 기록 내보내기·불러오기·초기화 |
+
+화면 이동은 `location.hash` 대입이 아니라 **History API** 로 남긴다(`src/lib/router.js`).
+주소 모양은 그대로지만, pushState 기록이 남아야 분석 도구가 화면 이동을 볼 수 있다.
 
 ---
 

@@ -78,6 +78,29 @@ Build Command `npm run build` / Output Directory `dist`.
 
 ---
 
+## 방문 통계 (선택)
+
+Cloudflare Web Analytics 를 쓸 수 있다. 쿠키를 심지 않아 동의 배너가 필요 없고,
+설정하지 않으면 아무 스크립트도 붙지 않는다.
+
+1. Cloudflare 대시보드 → **Web Analytics** → 사이트 추가 → 토큰 복사
+2. Pages 프로젝트 → Settings → **Environment variables** 에 추가
+
+   | 이름 | 값 |
+   |---|---|
+   | `VITE_CF_BEACON_TOKEN` | 복사한 토큰 |
+
+3. 다시 배포
+
+토큰은 브라우저로 내려가는 공개 값이라 비밀이 아니다. 그래도 계정마다 다르므로
+저장소에 넣지 않고 환경변수로 받는다.
+
+화면 이동(`#/chapter/...` → `#/quiz/...`)은 라우터가 History API 로 남기므로
+챕터별 조회수까지 잡힌다. Pages 설정에서 **자동 삽입**을 대신 켜도 되는데,
+그 경우 앱은 이미 붙은 비콘을 감지하고 물러나므로 두 번 세지 않는다.
+
+---
+
 ## 학습 기록은 어디에 저장되나
 
 학습자의 **브라우저에만** 저장된다 (localStorage). 서버로 보내지 않는다.
