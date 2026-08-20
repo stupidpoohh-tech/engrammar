@@ -5,6 +5,7 @@ export const part4Connect = [
     id: "conjunction",
     title: "접속사 — 단어·문장을 잇다",
     kind: "basic",
+    short: "접속사",
     blurb: "and / but / or / because / when / if",
     summary: [
       { t: "h", text: "등위접속사 — 같은 무게의 것을 잇는다" },
@@ -116,6 +117,7 @@ export const part4Connect = [
     id: "preposition",
     title: "전치사 — 시간·장소를 표시",
     kind: "basic",
+    short: "전치사",
     blurb: "in / on / at / to / from",
     summary: [
       { t: "h", text: "시간 전치사 — <b>큰 → 작은</b> 순으로 좁힌다" },
@@ -239,6 +241,8 @@ export const part4Connect = [
     id: "modal",
     title: "조동사 — 동사에 의미를 더한다",
     kind: "basic",
+    short: "기본",
+    group: "조동사",
     blurb: "can / will / must / should / may",
     summary: [
       { t: "h", text: "조동사 = 동사를 돕는 동사" },
@@ -346,6 +350,8 @@ export const part4Connect = [
     id: "modal-have-pp",
     title: "조동사 + have + p.p — 과거에 대한 추측·후회",
     kind: "basic",
+    short: "have+p.p",
+    group: "조동사",
     blurb: "should have / must have / could have — 지나간 일에 대한 판단",
     summary: [
       { t: "h", text: "조동사 + have + p.p 란?" },
@@ -444,6 +450,8 @@ export const part4Connect = [
     id: "modal-idioms",
     title: "조동사 관용 — have to · ought to · used to 등",
     kind: "basic",
+    short: "관용",
+    group: "조동사",
     blurb: "must 옆 have to / should 옆 ought to / 과거 습관 used to",
     summary: [
       { t: "h", text: "주요 패턴" },
@@ -541,6 +549,7 @@ export const part4Connect = [
     id: "adverb-clause",
     title: "부사절 접속사 심화 — 양보·조건·목적·시간",
     kind: "basic",
+    short: "부사절 접속사",
     blurb: "although / unless / so that / in case / by the time",
     summary: [
       { t: "h", text: "양보 — \"~에도 불구하고\"" },
@@ -651,6 +660,7 @@ export const part4Connect = [
     id: "connect-review",
     title: "접속사·전치사·조동사 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "헷갈리는 짝꿍들 한 번에",
     summary: [
       { t: "h", text: "접속사 vs 전치사" },

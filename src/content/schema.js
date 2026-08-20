@@ -4,7 +4,11 @@
 // 형식이 어긋나면 배포 전에 걸린다.
 //
 // ── 챕터 ─────────────────────────────────────────────────────
-//   { id, title, kind: "basic"|"review"|"mega", blurb, summary: Block[], questions: Question[] }
+//   { id, title, short, group?, kind: "basic"|"review"|"mega", blurb, summary: Block[], questions: Question[] }
+//
+//   short  목차에 칩으로 뜨는 짧은 이름 ("긍정", "통합정리")
+//   group  같은 줄에 묶일 소주제 ("be동사"). 없으면 묶이지 않고 홀로 놓인다.
+//          같은 group 은 배열에서 반드시 붙어 있어야 한다.
 //
 // ── 블록(summary) ────────────────────────────────────────────
 //   { t: "h",  text }                          제목
@@ -119,6 +123,18 @@ export function validateChapters(chapters) {
   const out = [];
   if (!Array.isArray(chapters) || !chapters.length) return ["챕터가 없음"];
 
+  // 같은 group 이 떨어져 있으면 목차에 같은 줄이 두 번 생긴다
+  const groupRuns = new Map();
+  let prevKey = Symbol();
+  for (const c of chapters) {
+    const key = `${c?.sectionId ?? ""}/${c?.group ?? ""}`;
+    if (key !== prevKey) {
+      if (c?.group && groupRuns.has(key)) out.push(`group "${c.group}" 이 떨어져 있음 — 붙여 놓을 것`);
+      groupRuns.set(key, true);
+      prevKey = key;
+    }
+  }
+
   const seenChapter = new Set();
   for (const c of chapters) {
     const where = `chapter[${c?.id ?? "?"}]`;
@@ -127,6 +143,9 @@ export function validateChapters(chapters) {
     seenChapter.add(c.id);
     if (!isStr(c.title) || !c.title.trim()) out.push(`${where}: title 없음`);
     if (!KINDS.includes(c.kind)) out.push(`${where}: 알 수 없는 kind "${c.kind}"`);
+    if (!isStr(c.short) || !c.short.trim()) out.push(`${where}: short 없음`);
+    else if (c.short.length > 12) out.push(`${where}: short 가 너무 김 (12자 이하) — "${c.short}"`);
+    if (c.group != null && (!isStr(c.group) || !c.group.trim())) out.push(`${where}: group 형식 오류`);
     if (!Array.isArray(c.summary) || !c.summary.length) out.push(`${where}: summary 비어 있음`);
     else c.summary.forEach((b, i) => checkBlock(b, `${where}.summary[${i}]`, out));
 

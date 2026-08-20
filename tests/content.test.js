@@ -74,6 +74,49 @@ describe("카드 문항의 함정", () => {
   });
 });
 
+describe("목차 칩", () => {
+  it("모든 챕터에 짧은 이름이 있다", () => {
+    for (const c of CHAPTERS) {
+      expect(c.short?.trim().length ?? 0).toBeGreaterThan(0);
+      expect(c.short.length).toBeLessThanOrEqual(12);
+    }
+  });
+
+  it("같은 PART 안에서 짧은 이름이 겹치지 않는다", () => {
+    const bad = [];
+    for (const sec of SECTIONS) {
+      const items = CHAPTERS.filter((c) => c.sectionId === sec.id);
+      // 소주제(group)가 다르면 같은 이름이어도 된다 — "과거/be동사" 와 "미래/be동사"
+      const keys = items.map((c) => `${c.group ?? ""}/${c.short}`);
+      if (new Set(keys).size !== keys.length) bad.push(sec.id);
+    }
+    expect(bad).toEqual([]);
+  });
+
+  // 흩어져 있으면 목차에 같은 줄이 두 번 그려진다
+  it("같은 소주제는 배열에서 붙어 있다", () => {
+    const seen = new Set();
+    let prev = null;
+    const bad = [];
+    for (const c of CHAPTERS) {
+      const key = `${c.sectionId}/${c.group ?? ""}`;
+      if (key !== prev) {
+        if (c.group && seen.has(key)) bad.push(key);
+        seen.add(key);
+        prev = key;
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("manifest 가 짧은 이름과 소주제를 함께 담는다", () => {
+    for (const [i, m] of MANIFEST.entries()) {
+      expect(m.short).toBe(CHAPTERS[i].short);
+      expect(m.group).toBe(CHAPTERS[i].group ?? null);
+    }
+  });
+});
+
 describe("구성", () => {
   it("manifest 가 콘텐츠와 일치한다", () => {
     expect(MANIFEST.length).toBe(CHAPTERS.length);

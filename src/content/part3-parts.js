@@ -5,6 +5,7 @@ export const part3Parts = [
     id: "noun",
     title: "명사 — 셀 수 있는/없는",
     kind: "basic",
+    short: "명사",
     blurb: "a / an / -s / 셀 수 없는 명사",
     summary: [
       { t: "h", text: "명사의 종류" },
@@ -112,6 +113,7 @@ export const part3Parts = [
     id: "adjective",
     title: "형용사 — 명사를 꾸민다",
     kind: "basic",
+    short: "형용사",
     blurb: "명사 앞, be동사 뒤",
     summary: [
       { t: "h", text: "형용사의 위치 두 가지" },
@@ -210,6 +212,7 @@ export const part3Parts = [
     id: "adverb",
     title: "부사 — 동사를 꾸민다",
     kind: "basic",
+    short: "부사",
     blurb: "동사·형용사·부사·문장 전체를 꾸미기",
     summary: [
       { t: "h", text: "부사가 꾸미는 것" },
@@ -316,6 +319,7 @@ export const part3Parts = [
     id: "parts-review",
     title: "품사 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "명사·형용사·부사 헷갈리지 않기",
     summary: [
       { t: "h", text: "세 품사를 한눈에" },

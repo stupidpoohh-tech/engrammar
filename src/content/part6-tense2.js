@@ -5,6 +5,7 @@ export const part6Tense2 = [
     id: "tense-prog",
     title: "진행시제 — 진행 중인 동작",
     kind: "basic",
+    short: "진행",
     blurb: "be + V-ing — 어떤 시점에 진행 중",
     summary: [
       { t: "h", text: "형태" },
@@ -100,6 +101,7 @@ export const part6Tense2 = [
     id: "present-perfect",
     title: "현재완료 — have/has + p.p",
     kind: "basic",
+    short: "현재완료",
     blurb: "과거의 일이 현재까지 이어지거나 영향을 미침",
     summary: [
       { t: "h", text: "형태" },
@@ -195,6 +197,7 @@ export const part6Tense2 = [
     id: "past-perfect",
     title: "과거완료 — had + p.p",
     kind: "basic",
+    short: "과거완료",
     blurb: "과거의 한 시점보다 더 이전 (대과거)",
     summary: [
       { t: "h", text: "형태" },
@@ -275,6 +278,7 @@ export const part6Tense2 = [
     id: "future-perfect-progressive",
     title: "미래완료 · 완료진행",
     kind: "basic",
+    short: "미래완료",
     blurb: "will have p.p / have been V-ing — 시제의 마지막 조각",
     summary: [
       { t: "h", text: "미래완료 — will have + p.p" },
@@ -372,6 +376,7 @@ export const part6Tense2 = [
     id: "tense2-review",
     title: "진행·완료 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "진행시제와 완료시제 종합",
     summary: [
       { t: "h", text: "한 화면 정리" },
@@ -502,6 +507,7 @@ export const part6Tense2 = [
     id: "tense-all-mega",
     title: "전체 시제 대왕정리",
     kind: "mega",
+    short: "전체 총정리",
     blurb: "단순 · 진행 · 완료 — 모든 시제 종합",
     summary: [
       { t: "h", text: "시제 8가지 한눈에" },

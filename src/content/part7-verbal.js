@@ -5,6 +5,7 @@ export const part7Verbal = [
     id: "to-infinitive",
     title: "to부정사 — to + 동사원형",
     kind: "basic",
+    short: "to부정사",
     blurb: "동사를 명사·형용사·부사로 변신시키는 기본기",
     summary: [
       { t: "h", text: "형태" },
@@ -99,6 +100,7 @@ export const part7Verbal = [
     id: "gerund",
     title: "동명사 — V-ing의 명사 역할",
     kind: "basic",
+    short: "동명사",
     blurb: "동사ing가 명사 자리에 들어가는 경우",
     summary: [
       { t: "h", text: "형태" },
@@ -194,6 +196,7 @@ export const part7Verbal = [
     id: "participle",
     title: "분사 — 동사가 형용사 역할",
     kind: "basic",
+    short: "분사",
     blurb: "현재분사(~ing)와 과거분사(p.p)로 명사 꾸미기",
     summary: [
       { t: "h", text: "두 가지 분사" },
@@ -298,6 +301,7 @@ export const part7Verbal = [
     id: "participial-construction",
     title: "분사구문 — 부사절을 분사로 압축",
     kind: "basic",
+    short: "분사구문",
     blurb: "When/Because/If ~를 V-ing 하나로 줄이는 고급 표현",
     summary: [
       { t: "h", text: "분사구문이란?" },
@@ -406,6 +410,7 @@ export const part7Verbal = [
     id: "verbal-advanced",
     title: "준동사 심화 — 의미상 주어·완료형·가주어/가목적어",
     kind: "basic",
+    short: "심화",
     blurb: "for me to / of you to / to have p.p / It ~ to부정사",
     summary: [
       { t: "h", text: "의미상 주어 — 준동사의 실제 주체" },
@@ -528,6 +533,7 @@ export const part7Verbal = [
     id: "verbal-review",
     title: "준동사 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "to부정사 · 동명사 · 분사 종합",
     summary: [
       { t: "h", text: "준동사 한눈에" },

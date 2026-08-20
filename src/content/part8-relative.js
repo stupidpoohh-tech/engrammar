@@ -5,6 +5,7 @@ export const part8Relative = [
     id: "relative-pronoun",
     title: "관계대명사 — who, which, that, whose, whom",
     kind: "basic",
+    short: "관계대명사",
     blurb: "두 문장을 하나로 — 명사를 받아 잇는 다리",
     summary: [
       { t: "h", text: "관계대명사란?" },
@@ -100,6 +101,7 @@ export const part8Relative = [
     id: "relative-adverb",
     title: "관계부사 — when, where, why, how",
     kind: "basic",
+    short: "관계부사",
     blurb: "시간·장소·이유·방법을 받아 잇는 관계사",
     summary: [
       { t: "h", text: "관계부사란?" },
@@ -195,6 +197,7 @@ export const part8Relative = [
     id: "what-usage",
     title: "what 총정리 — 다양한 용법",
     kind: "basic",
+    short: "what 총정리",
     blurb: "관계대명사 what · 감탄문 · what + 명사 — 헷갈리는 what 정리",
     summary: [
       { t: "h", text: "what의 네 가지 얼굴" },
@@ -314,6 +317,7 @@ export const part8Relative = [
     id: "relative-advanced",
     title: "관계사 심화 — 계속적 용법·생략·복합관계사",
     kind: "basic",
+    short: "심화",
     blurb: ", who / 관계사 생략 / whoever·whatever·however",
     summary: [
       { t: "h", text: "계속적 용법 — 콤마 관계사" },
@@ -424,6 +428,7 @@ export const part8Relative = [
     id: "relative-review",
     title: "관계사 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "관계대명사 · 관계부사 종합",
     summary: [
       { t: "h", text: "선택 흐름" },

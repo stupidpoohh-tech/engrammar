@@ -5,6 +5,8 @@ export const part1Tense = [
     id: "be-aff",
     title: "be동사 긍정",
     kind: "basic",
+    short: "긍정",
+    group: "be동사",
     blurb: "I am, You are, He is...",
     summary: [
       { t: "h", text: "be동사란?" },
@@ -129,6 +131,8 @@ export const part1Tense = [
     id: "be-neg",
     title: "be동사 부정",
     kind: "basic",
+    short: "부정",
+    group: "be동사",
     blurb: "be동사 + not",
     summary: [
       { t: "h", text: "be동사 부정문" },
@@ -232,6 +236,8 @@ export const part1Tense = [
     id: "be-q",
     title: "be동사 의문",
     kind: "basic",
+    short: "의문",
+    group: "be동사",
     blurb: "be동사 + 주어 ~?",
     summary: [
       { t: "h", text: "be동사 의문문" },
@@ -320,6 +326,8 @@ export const part1Tense = [
     id: "be-negq",
     title: "be동사 부정의문",
     kind: "basic",
+    short: "부정의문",
+    group: "be동사",
     blurb: "Isn't ... ? / Aren't ... ?",
     summary: [
       { t: "h", text: "be동사 부정의문문" },
@@ -398,6 +406,8 @@ export const part1Tense = [
     id: "be-review",
     title: "be동사 통합 정리",
     kind: "review",
+    short: "통합정리",
+    group: "be동사",
     blurb: "긍정·부정·의문·부정의문 한꺼번에",
     summary: [
       { t: "h", text: "be동사 4가지 형태 한눈에" },
@@ -524,6 +534,8 @@ export const part1Tense = [
     id: "do-aff",
     title: "일반동사 긍정",
     kind: "basic",
+    short: "긍정",
+    group: "일반동사",
     blurb: "동사원형 / 3인칭 단수 -s",
     summary: [
       { t: "h", text: "일반동사 = be동사가 아닌 모든 동사" },
@@ -628,6 +640,8 @@ export const part1Tense = [
     id: "do-neg",
     title: "일반동사 부정",
     kind: "basic",
+    short: "부정",
+    group: "일반동사",
     blurb: "don't / doesn't + 동사원형",
     summary: [
       { t: "h", text: "일반동사 부정문" },
@@ -711,6 +725,8 @@ export const part1Tense = [
     id: "do-q",
     title: "일반동사 의문",
     kind: "basic",
+    short: "의문",
+    group: "일반동사",
     blurb: "Do / Does + 주어 + 동사원형 ?",
     summary: [
       { t: "h", text: "일반동사 의문문" },
@@ -788,6 +804,8 @@ export const part1Tense = [
     id: "do-negq",
     title: "일반동사 부정의문",
     kind: "basic",
+    short: "부정의문",
+    group: "일반동사",
     blurb: "Don't / Doesn't + 주어 ~?",
     summary: [
       { t: "h", text: "일반동사 부정의문문" },
@@ -864,6 +882,8 @@ export const part1Tense = [
     id: "do-review",
     title: "일반동사 통합 정리",
     kind: "review",
+    short: "통합정리",
+    group: "일반동사",
     blurb: "긍정·부정·의문·부정의문 한꺼번에",
     summary: [
       { t: "h", text: "일반동사 4가지 형태 한눈에 (3인칭 단수 주어 기준)" },
@@ -990,6 +1010,7 @@ export const part1Tense = [
     id: "present-mega",
     title: "현재시제 대왕 정리",
     kind: "mega",
+    short: "현재시제 총정리",
     blurb: "be동사 vs 일반동사 — 한 챕터에서 끝내기",
     summary: [
       { t: "h", text: "be동사 vs 일반동사 — 가장 큰 차이" },
@@ -1134,6 +1155,8 @@ export const part1Tense = [
     id: "be-past",
     title: "be동사 과거",
     kind: "basic",
+    short: "be동사",
+    group: "과거",
     blurb: "was / were",
     summary: [
       { t: "h", text: "be동사 과거형" },
@@ -1214,6 +1237,8 @@ export const part1Tense = [
     id: "do-past",
     title: "일반동사 과거",
     kind: "basic",
+    short: "일반동사",
+    group: "과거",
     blurb: "동사 + -ed / 불규칙 변화",
     summary: [
       { t: "h", text: "일반동사 과거형" },
@@ -1310,6 +1335,8 @@ export const part1Tense = [
     id: "past-review",
     title: "과거시제 정리",
     kind: "review",
+    short: "정리",
+    group: "과거",
     blurb: "was/were vs did + 원형",
     summary: [
       { t: "h", text: "과거시제 — be vs 일반동사" },
@@ -1426,6 +1453,8 @@ export const part1Tense = [
     id: "be-future",
     title: "be동사 미래",
     kind: "basic",
+    short: "be동사",
+    group: "미래",
     blurb: "will be / be going to be",
     summary: [
       { t: "h", text: "be동사 미래형" },
@@ -1498,6 +1527,8 @@ export const part1Tense = [
     id: "do-future",
     title: "일반동사 미래",
     kind: "basic",
+    short: "일반동사",
+    group: "미래",
     blurb: "will + 동사원형",
     summary: [
       { t: "h", text: "일반동사 미래형" },
@@ -1581,6 +1612,8 @@ export const part1Tense = [
     id: "future-review",
     title: "미래시제 정리",
     kind: "review",
+    short: "정리",
+    group: "미래",
     blurb: "will + 원형 — be든 일반이든 항상 원형",
     summary: [
       { t: "h", text: "미래시제 — 단 하나의 규칙" },
@@ -1698,6 +1731,7 @@ export const part1Tense = [
     id: "all-mega",
     title: "현재·과거·미래 대왕 정리",
     kind: "mega",
+    short: "전체 총정리",
     blurb: "세 시제를 한 챕터에서 마스터하기",
     summary: [
       { t: "h", text: "한눈에 보는 시제 표" },

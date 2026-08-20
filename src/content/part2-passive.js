@@ -5,6 +5,7 @@ export const part2Passive = [
     id: "passive-basic",
     title: "수동태 기본",
     kind: "basic",
+    short: "기본",
     blurb: "be + 과거분사 (p.p)",
     summary: [
       { t: "h", text: "수동태란?" },
@@ -109,6 +110,7 @@ export const part2Passive = [
     id: "passive-negq",
     title: "수동태 부정·의문",
     kind: "basic",
+    short: "부정·의문",
     blurb: "be동사처럼 다룬다",
     summary: [
       { t: "h", text: "수동태 부정과 의문" },
@@ -190,6 +192,7 @@ export const part2Passive = [
     id: "passive-45",
     title: "4·5형식 수동태",
     kind: "basic",
+    short: "4·5형식",
     blurb: "두 개의 목적어·목적격보어가 있는 문장의 수동 전환",
     summary: [
       { t: "h", text: "4형식의 수동태 — 두 가지 방식" },
@@ -290,6 +293,7 @@ export const part2Passive = [
     id: "passive-advanced",
     title: "심화 수동태 — 시제·조동사·동사구·by 이외 전치사",
     kind: "basic",
+    short: "심화",
     blurb: "진행형·완료형 수동태, 관용 전치사(be interested in 등)",
     summary: [
       { t: "h", text: "시제·형태별 수동태" },
@@ -405,6 +409,7 @@ export const part2Passive = [
     id: "passive-review",
     title: "수동태 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "능동 ↔ 수동, 시제별 한꺼번에",
     summary: [
       { t: "h", text: "능동 ↔ 수동 변환 3단계" },

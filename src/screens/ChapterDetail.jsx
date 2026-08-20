@@ -2,57 +2,44 @@
 import { MANIFEST, sectionById } from "../content/index.js";
 import { Blocks } from "../lib/blocks.jsx";
 import { Icon } from "../components/Icon.jsx";
-import { BackButton, KindTag } from "../components/common.jsx";
+import { IconButton } from "../components/common.jsx";
 import { MODES } from "../engine/variants.js";
 
-/**
- * 챕터 번호는 홈 목차와 같은 규칙으로 센다 — 소속 PART 안에서 basic 챕터만 1부터.
- * (구버전은 홈이 PART 안 번호를, 상세가 전체 통짜 번호를 보여줘 같은 챕터가 두 번호를 가졌다.)
- */
+/** 챕터 번호는 소속 PART 안에서 1부터 센다 — "Part I. Ch5". */
 export function chapterLabel(chapterId) {
   const meta = MANIFEST.find((m) => m.id === chapterId);
   if (!meta) return null;
   const sec = sectionById(meta.sectionId);
-  if (meta.kind !== "basic") return { roman: sec.roman, text: meta.kind === "mega" ? "MASTER" : "REVIEW" };
+  const roman = sec.roman.replace("PART", "Part");
   let n = 0;
   for (const m of MANIFEST) {
     if (m.sectionId !== meta.sectionId) continue;
-    if (m.kind === "basic") n += 1;
+    n += 1;
     if (m.id === chapterId) break;
   }
-  return { roman: sec.roman, text: `Chapter ${String(n).padStart(2, "0")}` };
+  return { roman: sec.roman, text: `${roman}. Ch${n}` };
 }
 
 export function ChapterDetailScreen({ chapter, progress, mode, onSetMode, onBack, onStart, onOpenGrammar }) {
   const label = chapterLabel(chapter.id);
-  const best = progress?.best;
 
   return (
     <div className="fade-in">
       <div className="screen-head">
-        <BackButton onClick={onBack} label="챕터 목록" />
+        <IconButton name="arrow-left" label="챕터 목록으로" onClick={onBack} />
       </div>
 
-      <div style={{ padding: "24px 0 16px" }}>
-        <div className="chapter-eyebrow">
-          <span>{label?.roman}</span>
-          <span style={{ opacity: 0.4 }}>·</span>
-          <span>{label?.text}</span>
-          <KindTag kind={chapter.kind} />
-        </div>
-        <h1 className="screen-title">{chapter.title}</h1>
-        {chapter.blurb && <p className="screen-sub" style={{ marginBottom: 12 }}>{chapter.blurb}</p>}
-        <div style={{ color: "var(--text-muted)", fontSize: 13 }}>
-          {chapter.questions.length}문제
-          <span style={{ opacity: 0.4, margin: "0 8px" }}>·</span>
-          {progress?.completed ? "✓ 완료" : "미완료"}
-          {best && (
-            <>
-              <span style={{ opacity: 0.4, margin: "0 8px" }}>·</span>
-              최고 기록 <b style={{ color: "var(--text)" }}>{best.score}/{best.total}</b>
-            </>
-          )}
-        </div>
+      <div className="chapter-title-block">
+        <span className="chapter-eyebrow">{label?.text}</span>
+        <h1 className="screen-title">
+          {chapter.title}
+          <span
+            className={"chapter-done" + (progress?.completed ? " on" : "")}
+            title={progress?.completed ? "완료" : "미완료"}
+          >
+            <Icon name="check" size={12} />
+          </span>
+        </h1>
       </div>
 
       <Blocks blocks={chapter.summary} />

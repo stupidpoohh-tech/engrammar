@@ -56,6 +56,8 @@ function fmtChapter(c) {
     `  id: ${q(c.id)},`,
     `  title: ${q(c.title)},`,
     `  kind: ${q(c.kind)},`,
+    `  short: ${q(c.short ?? c.title)},`,
+    ...(c.group ? [`  group: ${q(c.group)},`] : []),
     `  blurb: ${q(c.blurb ?? "")},`,
     `  summary: [`,
     c.summary.map((b) => fmtBlock(b, 4)).join(",\n") + ",",

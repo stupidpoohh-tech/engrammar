@@ -8,18 +8,32 @@ export function TopBar({ onHome, right }) {
     <div className="topbar">
       <button className="topbar-brand" onClick={onHome}>
         <span className="topbar-brand-mark">A</span>
-        <span>영어문법 학습</span>
+        <span>고등영어문법</span>
       </button>
       <div className="topbar-stats">{right}</div>
     </div>
   );
 }
 
-export function BackButton({ onClick, label = "홈으로" }) {
+/** 글자 없는 아이콘 버튼. 이름은 스크린리더와 툴팁으로만 전한다. */
+export function IconButton({ name, label, onClick }) {
   return (
-    <button className="btn btn-soft btn-sm" onClick={onClick}>
-      <Icon name="arrow-left" size={14} /> {label}
+    <button className="icon-btn" onClick={onClick} aria-label={label} title={label}>
+      <Icon name={name} size={18} />
     </button>
+  );
+}
+
+const PORTFOLIO = "https://dada-portfolio.stupidpoohh.workers.dev/";
+
+export function SiteFooter() {
+  return (
+    <footer className="site-footer">
+      <span>만든사람 DADA</span>
+      <a href={PORTFOLIO} target="_blank" rel="noopener noreferrer" aria-label="만든사람 포트폴리오 (새 창)" title="포트폴리오">
+        <Icon name="home" size={16} />
+      </a>
+    </footer>
   );
 }
 

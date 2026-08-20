@@ -5,6 +5,8 @@ export const part9Advanced = [
     id: "subjunctive",
     title: "가정법 — 사실의 반대 또는 바람",
     kind: "basic",
+    short: "기본",
+    group: "가정법",
     blurb: "If I were... / If I had... — 현실과 다른 상황을 말할 때",
     summary: [
       { t: "h", text: "가정법이란?" },
@@ -107,6 +109,8 @@ export const part9Advanced = [
     id: "subjunctive-future",
     title: "가정법 미래 — 일어날 가능성이 낮은 미래",
     kind: "basic",
+    short: "미래",
+    group: "가정법",
     blurb: "If ~ were to / If ~ should — 거의 불가능하거나 가능성 낮은 미래 가정",
     summary: [
       { t: "h", text: "가정법 미래란?" },
@@ -204,6 +208,7 @@ export const part9Advanced = [
     id: "comparison",
     title: "비교 구문 — 비교급·최상급·as ~ as",
     kind: "basic",
+    short: "비교 구문",
     blurb: "더 ~한 / 가장 ~한 / ~만큼 ~한",
     summary: [
       { t: "h", text: "비교급 — \"더 ~한\"" },
@@ -310,6 +315,7 @@ export const part9Advanced = [
     id: "noun-clause",
     title: "명사절 — 문장 안의 문장",
     kind: "basic",
+    short: "명사절",
     blurb: "that / whether(if) / 의문사 — 문장이 통째로 명사 역할",
     summary: [
       { t: "h", text: "명사절이란?" },
@@ -416,6 +422,7 @@ export const part9Advanced = [
     id: "reported-speech",
     title: "화법 — 직접화법과 간접화법",
     kind: "basic",
+    short: "화법",
     blurb: "He said \"I am happy.\" → He said (that) he was happy.",
     summary: [
       { t: "h", text: "두 가지 화법" },
@@ -516,6 +523,7 @@ export const part9Advanced = [
     id: "special-structure",
     title: "특수구문 — 강조·도치·so~that·so do I",
     kind: "basic",
+    short: "특수구문",
     blurb: "어순을 바꾸거나 의미를 강조하는 표현들",
     summary: [
       { t: "h", text: "강조 구문 — It is ~ that ~" },
@@ -645,6 +653,7 @@ export const part9Advanced = [
     id: "negation",
     title: "부정 표현 — 부분부정과 전체부정",
     kind: "basic",
+    short: "부정 표현",
     blurb: "not always ~한 건 아니다 / no one 아무도 아니다",
     summary: [
       { t: "h", text: "부분부정 — \"항상/모두/반드시 ~인 것은 아니다\"" },
@@ -760,6 +769,7 @@ export const part9Advanced = [
     id: "advanced-review",
     title: "고급 표현 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "가정법 · 비교 · 특수구문 종합",
     summary: [
       { t: "h", text: "한눈에 정리" },

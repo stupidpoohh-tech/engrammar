@@ -325,119 +325,182 @@ ul, ol { padding-left: 1.15em; }
 .chapter-eyebrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
 /* ============================================================
-   홈 — 머리말과 진행 요약
+   홈 — 진행 요약과 바로가기
    ============================================================ */
-.home-header { padding: 24px 0 0; }
-
-.home-title {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.home-subtitle {
-  margin: 10px 0 0;
-  color: var(--text-muted);
-  font-size: 14.5px;
-  line-height: 1.6;
-}
-
 .home-progress {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: 24px;
-  padding: 16px 18px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  gap: 12px;
+  padding: 18px 2px 14px;
 }
 
-.home-progress-text { flex: none; }
-
 .home-progress-num {
-  font-size: 20px;
+  flex: none;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-  line-height: 1.2;
 }
 .home-progress-num span { color: var(--text-faint); font-weight: 600; }
 
-.home-progress-label {
-  margin-top: 2px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
 .home-progress-bar {
   flex: 1;
-  height: 6px;
+  height: 3px;
   border-radius: var(--r-pill);
   background: var(--surface-deep);
   overflow: hidden;
 }
 .home-progress-fill {
+  display: block;
   height: 100%;
   border-radius: var(--r-pill);
   background: var(--brand);
   transition: width .4s cubic-bezier(.2, .8, .2, 1);
 }
 
-/* ── 바로가기 (복습 · 오답노트) ─────────────────────────── */
+/* ── 바로가기 ─────────────────────────────────────────── */
 .quick-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-  margin-top: 10px;
 }
 
 .quick-card {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 62px;
-  padding: 13px 14px;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 8px 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text-soft);
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  transition: border-color .15s ease, background .15s ease;
+  border-radius: var(--r-md);
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
 }
-.quick-card:hover:not(:disabled) { border-color: var(--border-strong); background: var(--surface); }
-.quick-card:disabled { opacity: 0.6; cursor: default; }
+.quick-card:hover { border-color: var(--border-strong); background: var(--surface); color: var(--text); }
+.quick-card svg { color: var(--text-muted); flex: none; }
 
-.quick-card-mark {
-  width: 32px;
-  height: 32px;
-  flex: none;
+.quick-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
   display: grid;
   place-items: center;
-  border-radius: var(--r-sm);
-  background: var(--surface-muted);
-  color: var(--text-soft);
-}
-.quick-card.warn .quick-card-mark { background: var(--brand-faint); color: var(--brand); }
-
-.quick-card-body { min-width: 0; }
-.quick-card-title {
-  display: block;
+  border-radius: var(--r-pill);
+  background: var(--wrong);
+  color: #fff;
+  font-size: 11px;
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.025em;
-  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
-.quick-card-meta {
-  display: block;
-  margin-top: 1px;
+
+/* ============================================================
+   PART 목차
+   ============================================================ */
+.part-list { margin-top: 14px; }
+
+.part { border-bottom: 1px solid var(--hairline); }
+.part:last-child { border-bottom: none; }
+
+.part-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 2px;
+  transition: background .12s ease;
+}
+.part-head:hover { background: var(--surface); }
+
+.part-roman {
+  flex: none;
+  width: 68px;
+  white-space: nowrap;
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.part-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.part-count {
+  flex: none;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-faint);
+}
+
+.part-caret { flex: none; font-size: 10px; color: var(--text-faint); }
+
+.part-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 2px 2px 14px;
+}
+
+.chip-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.chip-row-label {
+  flex: none;
+  width: 68px;
+  padding-top: 7px;
   font-size: 12px;
   color: var(--text-muted);
-  line-height: 1.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  letter-spacing: -0.02em;
 }
+/* 소주제 이름이 없는 줄도 칩이 같은 자리에서 시작하도록 자리를 비워 둔다 */
+.chip-row:not(:has(.chip-row-label)) .chip-list { margin-left: 76px; }
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.chip {
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text-soft);
+  transition: border-color .12s ease, background .12s ease, color .12s ease;
+}
+.chip:hover { border-color: var(--border-strong); background: var(--surface); color: var(--text); }
+/* 완료 여부는 색으로만 — 별도 표시를 두지 않는다 */
+.chip.done {
+  background: var(--brand-faint);
+  border-color: var(--brand-soft);
+  color: var(--brand-deep);
+}
+/* 정리·대왕정리 챕터는 조금 더 진하게 */
+.chip.sum { border-color: var(--border-strong); font-weight: 700; }
+.chip.sum.done { border-color: var(--brand); }
 
 /* ── 문법 모아보기 · 통계로 가는 줄 ─────────────────────── */
 .grammar-link {
@@ -454,16 +517,6 @@ ul, ol { padding-left: 1.15em; }
 }
 .grammar-link:hover { border-color: var(--border-strong); background: var(--surface); }
 
-.grammar-link-mark {
-  width: 34px;
-  height: 34px;
-  flex: none;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-sm);
-  background: var(--surface-muted);
-  color: var(--text-soft);
-}
 .grammar-link-body { flex: 1; min-width: 0; }
 .grammar-link-title {
   font-weight: 700;
@@ -473,146 +526,7 @@ ul, ol { padding-left: 1.15em; }
 }
 .grammar-link-meta { margin-top: 2px; font-size: 12.5px; color: var(--text-muted); }
 
-/* ============================================================
-   대단원 (PART)
-   ============================================================ */
-.section { margin-top: 14px; }
-
-.section-head {
-  display: block;
-  width: 100%;
-  padding: 12px 2px;
-  border-bottom: 1px solid var(--border);
-}
-
-.section-head-line {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.section-name {
-  flex: 1;
-  min-width: 0;
-  margin: 0;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-.section-count {
-  flex: none;
-  font-size: 12.5px;
-  font-variant-numeric: tabular-nums;
-  color: var(--text-faint);
-}
-
-.section-toggle-icon {
-  font-size: 11px;
-  color: var(--text-faint);
-  transition: color .15s ease;
-}
-
-.section-desc {
-  display: block;
-  margin-top: 2px;
-  font-size: 12.5px;
-  color: var(--text-muted);
-}
-
-.section-head-toggle { transition: background .15s ease; }
-.section-head-toggle:hover { background: var(--surface); }
-.section-head-toggle:hover .section-toggle-icon { color: var(--text-muted); }
-.section.collapsed .section-head { border-bottom-color: var(--hairline); }
-
-/* ============================================================
-   챕터 줄
-   ============================================================ */
-.chapter-list { display: flex; flex-direction: column; }
-
-.chapter-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  min-height: 60px;
-  padding: 12px 2px;
-  border-bottom: 1px solid var(--hairline);
-  transition: background .12s ease;
-}
-.chapter-row:hover { background: var(--surface); }
-.chapter-row:last-child { border-bottom: none; }
-
-.chapter-row-num {
-  flex: none;
-  width: 26px;
-  font-family: var(--font-eng);
-  font-size: 13px;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--text-faint);
-  text-align: center;
-}
-.chapter-row.completed .chapter-row-num { color: var(--brand); }
-.chapter-row.review .chapter-row-num,
-.chapter-row.mega .chapter-row-num { color: var(--ochre); }
-
-.chapter-row-body { flex: 1; min-width: 0; }
-
-.chapter-row-title {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  flex-wrap: wrap;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.35;
-}
-
-.chapter-row-meta {
-  margin-top: 2px;
-  font-size: 12.5px;
-  color: var(--text-muted);
-  line-height: 1.45;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.chapter-row-meta-sep { opacity: 0.45; margin: 0 5px; }
-
-.chapter-row-status {
-  flex: none;
-  width: 24px;
-  display: grid;
-  place-items: center;
-  color: var(--text-faint);
-}
-
-.chapter-row-check {
-  width: 20px;
-  height: 20px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-pill);
-  background: var(--brand);
-  color: #fff;
-}
-
-.chapter-row-progress {
-  width: 22px;
-  height: 4px;
-  border-radius: var(--r-pill);
-  background: var(--surface-deep);
-  overflow: hidden;
-}
-.chapter-row-progress-fill { height: 100%; background: var(--ochre); border-radius: var(--r-pill); }
-.chapter-row.completed .chapter-row-progress-fill { background: var(--brand); }
-
-.chapter-row-arrow { opacity: 0; transition: opacity .15s ease; }
-.chapter-row:hover .chapter-row-arrow { opacity: 1; }
-
-/* 꼬리표 */
+/* 꼬리표 — 검색 결과에서만 쓴다 */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -620,7 +534,6 @@ ul, ol { padding-left: 1.15em; }
   border-radius: var(--r-xs);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 .tag-review { background: var(--ochre-faint); color: var(--ochre); }
@@ -1624,4 +1537,106 @@ ul, ol { padding-left: 1.15em; }
 @media (max-width: 560px) {
   .ref-content-title { font-size: 21px; }
   .chapter-start { margin-top: 24px; }
+}
+
+/* ============================================================
+   아이콘 버튼 · 챕터 표지 머리 · 모아보기 머리 · 만든사람
+   ============================================================ */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.icon-btn:hover { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+
+.chapter-title-block { padding: 18px 0 20px; }
+
+.chapter-eyebrow {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: none;
+  color: var(--text-muted);
+}
+
+.chapter-title-block .screen-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 8px 0 0;
+}
+
+/* 완료 여부 — 회색이면 미완료, 초록이면 완료 */
+.chapter-done {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--surface-deep);
+  color: #fff;
+}
+.chapter-done.on { background: var(--brand); }
+
+/* ── 문법 모아보기 머리 — 제목 옆에 검색창 ── */
+.ref-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 16px 0 20px;
+}
+.ref-title {
+  flex: none;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.ref-head .search-bar { flex: 1 1 200px; min-width: 0; }
+.ref-head .search-bar input { padding: 10px 0; font-size: 14px; }
+
+@media (max-width: 480px) {
+  .ref-head { gap: 8px; }
+  .ref-head .search-bar { flex-basis: 100%; order: 3; }
+}
+
+/* ── 만든사람 ── */
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 24px calc(28px + var(--safe-bottom));
+  font-size: 13px;
+  color: var(--text-faint);
+}
+.site-footer a {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: background .15s ease, color .15s ease;
+}
+.site-footer a:hover { background: var(--surface); color: var(--text); }
+
+@media (max-width: 560px) {
+  .chapter-title-block { padding: 14px 0 16px; }
+  .part-roman { width: 62px; font-size: 10px; }
+  .chip-row-label { width: 62px; }
+  .chip-row:not(:has(.chip-row-label)) .chip-list { margin-left: 70px; }
+  .site-footer { padding: 24px 18px calc(24px + var(--safe-bottom)); }
 }

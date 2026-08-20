@@ -11,7 +11,8 @@ import { CHAPTERS } from "../src/content/all.js";
 const rows = CHAPTERS.map((c) =>
   `  { id: ${JSON.stringify(c.id)}, sectionId: ${JSON.stringify(c.sectionId)}, ` +
   `kind: ${JSON.stringify(c.kind)}, title: ${JSON.stringify(c.title)}, ` +
-  `blurb: ${JSON.stringify(c.blurb ?? "")}, count: ${c.questions.length} }`
+  `short: ${JSON.stringify(c.short)}, group: ${JSON.stringify(c.group ?? null)}, ` +
+  `count: ${c.questions.length} }`
 ).join(",\n");
 
 export const source =

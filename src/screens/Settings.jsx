@@ -5,7 +5,7 @@
 import { useRef, useState } from "react";
 import { exportAll, importAll, resetAll } from "../engine/storage.js";
 import { Icon } from "../components/Icon.jsx";
-import { BackButton } from "../components/common.jsx";
+import { IconButton } from "../components/common.jsx";
 
 export function SettingsScreen({ onBack, refresh }) {
   const fileRef = useRef(null);
@@ -46,7 +46,7 @@ export function SettingsScreen({ onBack, refresh }) {
   return (
     <div className="fade-in">
       <div className="screen-head">
-        <BackButton onClick={onBack} />
+        <IconButton name="home" label="홈으로" onClick={onBack} />
       </div>
       <h1 className="screen-title">기록 관리</h1>
       <p className="screen-sub">

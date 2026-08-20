@@ -17,8 +17,8 @@ export default defineConfig({
         navigateFallback: "index.html",
       },
       manifest: {
-        name: "영어문법 학습",
-        short_name: "영어문법",
+        name: "고등영어문법",
+        short_name: "고등영어문법",
         description: "고등학교 영어 문법 정리와 퀴즈 학습 도구",
         lang: "ko",
         start_url: "./",

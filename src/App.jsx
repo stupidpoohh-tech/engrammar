@@ -13,7 +13,7 @@ import { GrammarRefScreen } from "./screens/GrammarRef.jsx";
 import { WrongNoteScreen } from "./screens/WrongNote.jsx";
 import { StatsScreen } from "./screens/Stats.jsx";
 import { SettingsScreen } from "./screens/Settings.jsx";
-import { TopBar, Loading, EmptyNote } from "./components/common.jsx";
+import { TopBar, Loading, EmptyNote, SiteFooter } from "./components/common.jsx";
 import { Icon } from "./components/Icon.jsx";
 
 migrateLegacy();
@@ -93,7 +93,6 @@ export function App() {
         weak={weak}
         onOpenChapter={go.chapter}
         onOpenGrammar={() => go.grammar()}
-        onReview={go.review}
         onWrongNote={go.wrong}
         onStats={go.stats}
       />
@@ -195,6 +194,7 @@ export function App() {
         />
       )}
       <div className="app-container">{screen}</div>
+      {!bare && <SiteFooter />}
     </div>
   );
 }
@@ -211,7 +211,7 @@ function NotFound({ what, onHome }) {
 /** 브라우저 탭·방문기록에 지금 보는 문법이 남도록. */
 function useDocumentTitle(route, chapterById) {
   useEffect(() => {
-    const base = "영어문법 학습";
+    const base = "고등영어문법";
     const named = {
       review: "복습", wrong: "오답노트", stats: "학습 통계", settings: "기록 관리",
     }[route.head];

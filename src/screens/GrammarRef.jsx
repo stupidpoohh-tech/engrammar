@@ -7,7 +7,7 @@ import { SECTIONS } from "../content/index.js";
 import { search } from "../lib/search.js";
 import { Blocks } from "../lib/blocks.jsx";
 import { Icon } from "../components/Icon.jsx";
-import { BackButton, KindTag, EmptyNote } from "../components/common.jsx";
+import { IconButton, KindTag, EmptyNote } from "../components/common.jsx";
 import { getPrefs, setPref } from "../engine/storage.js";
 import { chapterLabel } from "./ChapterDetail.jsx";
 
@@ -28,8 +28,8 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
   const activeSectionId = grouped.find((s) => s.items.some((c) => c.id === active?.id))?.id;
 
   // 처음 열면 지금 보고 있는 챕터가 속한 PART 만 펼쳐 둔다
-  const stored = getPrefs()[REF_COLLAPSED];
-  const collapsed = stored ?? grouped.filter((s) => s.id !== activeSectionId).map((s) => s.id);
+  // 처음 열면 모두 접혀 있다 — 65챕터가 한꺼번에 펼쳐지지 않게
+  const collapsed = getPrefs()[REF_COLLAPSED] ?? grouped.map((s) => s.id);
   const toggle = (id) =>
     setPref(REF_COLLAPSED, collapsed.includes(id) ? collapsed.filter((x) => x !== id) : [...collapsed, id]);
 
@@ -43,27 +43,25 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
 
   return (
     <div className="fade-in">
-      <div className="screen-head">
-        <BackButton onClick={onBack} />
-      </div>
-      <h1 className="screen-title">문법 모아보기</h1>
-      <p className="screen-sub">챕터 제목뿐 아니라 설명과 예문까지 함께 검색합니다.</p>
-
-      <div className="search-bar">
-        <Icon name="search" size={17} />
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="관계대명사, have p.p, 가정법…"
-          aria-label="문법 검색"
-          type="search"
-          autoComplete="off"
-        />
-        {query && (
-          <button className="search-clear" onClick={() => setQuery("")} aria-label="검색어 지우기">
-            <Icon name="x" size={13} />
-          </button>
-        )}
+      <div className="ref-head">
+        <IconButton name="home" label="홈으로" onClick={onBack} />
+        <h1 className="ref-title">문법 모아보기</h1>
+        <div className="search-bar">
+          <Icon name="search" size={16} />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="관계대명사, have p.p…"
+            aria-label="문법 검색"
+            type="search"
+            autoComplete="off"
+          />
+          {query && (
+            <button className="search-clear" onClick={() => setQuery("")} aria-label="검색어 지우기">
+              <Icon name="x" size={12} />
+            </button>
+          )}
+        </div>
       </div>
 
       {results ? (

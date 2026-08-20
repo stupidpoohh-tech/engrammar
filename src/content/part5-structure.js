@@ -5,6 +5,7 @@ export const part5Structure = [
     id: "structure-1",
     title: "1형식 — 주어 + 동사",
     kind: "basic",
+    short: "1형식",
     blurb: "S + V — 동사만으로 의미가 완성",
     summary: [
       { t: "h", text: "1형식이란?" },
@@ -77,6 +78,7 @@ export const part5Structure = [
     id: "structure-2",
     title: "2형식 — 주어 + 동사 + 보어",
     kind: "basic",
+    short: "2형식",
     blurb: "S + V + SC — 주어의 상태를 설명 (S = SC)",
     summary: [
       { t: "h", text: "2형식이란?" },
@@ -150,6 +152,7 @@ export const part5Structure = [
     id: "structure-3",
     title: "3형식 — 주어 + 동사 + 목적어",
     kind: "basic",
+    short: "3형식",
     blurb: "S + V + O — 동작이 미치는 대상이 있는 가장 흔한 구조",
     summary: [
       { t: "h", text: "3형식이란?" },
@@ -229,6 +232,7 @@ export const part5Structure = [
     id: "structure-4",
     title: "4형식 — 주어 + 동사 + 두 개의 목적어",
     kind: "basic",
+    short: "4형식",
     blurb: "S + V + IO + DO — ~에게(IO) ~을(DO) 주다·말하다·보여주다",
     summary: [
       { t: "h", text: "4형식이란?" },
@@ -306,6 +310,7 @@ export const part5Structure = [
     id: "structure-5",
     title: "5형식 — 주어 + 동사 + 목적어 + 목적격보어",
     kind: "basic",
+    short: "5형식",
     blurb: "S + V + O + OC — 목적어를 어떤 상태로 만들거나, 어떻게 부르다 (O = OC)",
     summary: [
       { t: "h", text: "5형식이란?" },
@@ -381,6 +386,7 @@ export const part5Structure = [
     id: "structure-review",
     title: "문장 5형식 통합 정리",
     kind: "review",
+    short: "통합정리",
     blurb: "1형식부터 5형식까지 — 구조 식별 종합",
     summary: [
       { t: "h", text: "5형식 한눈에 보기" },
