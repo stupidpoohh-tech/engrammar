@@ -62,8 +62,10 @@ npm test
    | Build output directory | `dist` |
    | Root directory | (비워둠) |
 
-3. Environment variables 에 `NODE_VERSION` = `20` (또는 그 이상)
-4. Save and Deploy
+3. Save and Deploy
+
+Node 버전은 저장소의 `.node-version`(22)을 Cloudflare 가 읽어 간다.
+대시보드에서 `NODE_VERSION` 을 따로 넣을 필요가 없다.
 
 이후로는 `git push` 만 하면 자동으로 다시 빌드·배포된다.
 
@@ -94,6 +96,10 @@ Build Command `npm run build` / Output Directory `dist`.
 **배포는 됐는데 옛 내용이 보일 때**
 PWA 서비스워커가 이전 버전을 들고 있을 수 있다. 강력 새로고침
 (Ctrl+Shift+R / Cmd+Shift+R)을 하거나 탭을 완전히 닫았다 열면 새 버전으로 갱신된다.
+
+**빌드 로그에 Node 버전 오류가 날 때**
+Vite 는 Node 18 이상이 필요하다. 저장소 루트의 `.node-version` 이 이를 지정하지만,
+호스팅 쪽이 이 파일을 읽지 않는다면 환경변수 `NODE_VERSION` 을 `22` 로 넣는다.
 
 **폰트가 시스템 폰트로 보일 때**
 Pretendard·Noto Serif KR 은 CDN 에서 받아온다. 네트워크가 막히면 시스템 폰트로
