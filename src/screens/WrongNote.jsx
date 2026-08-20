@@ -5,7 +5,7 @@ import { weakItems } from "../engine/review.js";
 import { fullSentence, joinTokens } from "../engine/grading.js";
 import { clearItem, MASTER_BOX } from "../engine/storage.js";
 import { Icon } from "../components/Icon.jsx";
-import { IconButton, BoxMeter, EmptyNote } from "../components/common.jsx";
+import { IconButton, ScreenHeader, BoxMeter, EmptyNote } from "../components/common.jsx";
 import { chapterLabel } from "./ChapterDetail.jsx";
 
 export function WrongNoteScreen({ chapters, onBack, onReview, onOpenChapter, refresh }) {
@@ -13,10 +13,10 @@ export function WrongNoteScreen({ chapters, onBack, onReview, onOpenChapter, ref
 
   return (
     <div className="fade-in">
-      <div className="screen-head">
-        <IconButton name="home" label="홈으로" onClick={onBack} />
-      </div>
-      <h1 className="screen-title">오답노트</h1>
+      <ScreenHeader
+        title="오답노트"
+        action={<IconButton name="home" label="홈으로" onClick={onBack} />}
+      />
       <p className="screen-sub">
         한 번이라도 틀린 문항이 모입니다. 연속으로 {MASTER_BOX}번 맞히면 목록에서 빠져요.
       </p>

@@ -19,8 +19,30 @@ export function TopBar({ onHome, right }) {
 export function IconButton({ name, label, onClick }) {
   return (
     <button className="icon-btn" onClick={onClick} aria-label={label} title={label}>
-      <Icon name={name} size={18} />
+      <Icon name={name} size={17} />
     </button>
+  );
+}
+
+/**
+ * 화면 머리 — 제목은 왼쪽, 나가는 버튼은 같은 줄 오른쪽 끝.
+ * 버튼이 한 줄을 통째로 차지하지 않게 모든 화면이 이 틀을 쓴다.
+ */
+export function ScreenHeader({ eyebrow, title, badge, action, children }) {
+  return (
+    <header className="screen-header">
+      <div className="screen-header-row">
+        <div className="screen-header-text">
+          {eyebrow && <span className="chapter-eyebrow">{eyebrow}</span>}
+          <h1 className="screen-title">
+            {title}
+            {badge}
+          </h1>
+        </div>
+        {action}
+      </div>
+      {children}
+    </header>
   );
 }
 

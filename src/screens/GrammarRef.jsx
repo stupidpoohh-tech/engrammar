@@ -7,7 +7,7 @@ import { SECTIONS } from "../content/index.js";
 import { search } from "../lib/search.js";
 import { Blocks } from "../lib/blocks.jsx";
 import { Icon } from "../components/Icon.jsx";
-import { IconButton, KindTag, EmptyNote } from "../components/common.jsx";
+import { IconButton, ScreenHeader, KindTag, EmptyNote } from "../components/common.jsx";
 import { getPrefs, setPref } from "../engine/storage.js";
 import { chapterLabel } from "./ChapterDetail.jsx";
 
@@ -43,15 +43,16 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
 
   return (
     <div className="fade-in">
-      <div className="ref-head">
-        <IconButton name="home" label="홈으로" onClick={onBack} />
-        <h1 className="ref-title">문법 모아보기</h1>
+      <ScreenHeader
+        title="문법 모아보기"
+        action={<IconButton name="home" label="홈으로" onClick={onBack} />}
+      >
         <div className="search-bar">
           <Icon name="search" size={16} />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="관계대명사, have p.p…"
+            placeholder="관계대명사, have p.p, 가정법…"
             aria-label="문법 검색"
             type="search"
             autoComplete="off"
@@ -62,7 +63,7 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
             </button>
           )}
         </div>
-      </div>
+      </ScreenHeader>
 
       {results ? (
         <SearchResults results={results} query={query} onSelect={(id) => { setQuery(""); onSelect(id); }} />

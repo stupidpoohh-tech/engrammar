@@ -305,7 +305,16 @@ ul, ol { padding-left: 1.15em; }
   color: var(--text-muted);
 }
 
-.screen-head { padding: 16px 0 0; }
+.screen-header { padding: 16px 0 20px; }
+
+.screen-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.screen-header-text { flex: 1; min-width: 0; }
+.screen-header .search-bar { margin-top: 14px; }
 
 .screen-title {
   font-size: 28px;
@@ -481,13 +490,13 @@ ul, ol { padding-left: 1.15em; }
 
 .chip {
   min-height: 32px;
-  padding: 6px 12px;
+  padding: 6px 11px;
   border-radius: var(--r-pill);
   border: 1px solid var(--border);
   background: var(--bg-elevated);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: var(--text-soft);
   transition: border-color .12s ease, background .12s ease, color .12s ease;
 }
@@ -498,9 +507,27 @@ ul, ol { padding-left: 1.15em; }
   border-color: var(--brand-soft);
   color: var(--brand-deep);
 }
-/* 정리·대왕정리 챕터는 조금 더 진하게 */
-.chip.sum { border-color: var(--border-strong); font-weight: 700; }
-.chip.sum.done { border-color: var(--brand); }
+/* 정리·총정리 챕터 — 이름 대신 아이콘 하나로 */
+.chip-icon {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-muted);
+  transition: border-color .12s ease, background .12s ease, color .12s ease;
+}
+.chip-icon:hover { background: var(--surface-muted); color: var(--text); }
+.chip-icon.mega { color: var(--ochre); border-color: var(--ochre-soft); background: var(--ochre-faint); }
+.chip-icon.done {
+  background: var(--brand-faint);
+  border-color: var(--brand-soft);
+  color: var(--brand-deep);
+}
+.chip-icon.mega.done { border-color: var(--brand); }
 
 /* ── 문법 모아보기 · 통계로 가는 줄 ─────────────────────── */
 .grammar-link {
@@ -1491,7 +1518,11 @@ ul, ol { padding-left: 1.15em; }
   .word-card { font-size: 15px; padding: 10px 14px; }
   .error-tokens { padding: 16px 14px; font-size: 16px; }
 
-  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat-grid { gap: 8px; }
+  .stat-tile { padding: 12px 10px; }
+  .stat-tile-label { font-size: 11.5px; }
+  .stat-tile-value { font-size: 19px; }
+  .stat-tile-value small { font-size: 12px; }
   .part-stat-bar { width: 72px; }
 
   .completion-screen { padding: 32px 0; }
@@ -1502,6 +1533,13 @@ ul, ol { padding-left: 1.15em; }
   .app-container { padding: 0 14px calc(48px + var(--safe-bottom)); }
   .topbar { padding: 0 14px; }
   .choice-btn { flex-basis: 100%; }
+
+  /* 좁은 화면에서도 소주제 한 줄이 접히지 않게 칩을 조인다 */
+  .chip-list { gap: 5px; }
+  .chip { padding: 6px 9px; font-size: 12px; }
+  .chip-icon { width: 30px; height: 30px; }
+  .part-roman, .chip-row-label { width: 58px; }
+  .chip-row:not(:has(.chip-row-label)) .chip-list { margin-left: 66px; }
 }
 
 /* ============================================================
@@ -1543,8 +1581,9 @@ ul, ol { padding-left: 1.15em; }
    아이콘 버튼 · 챕터 표지 머리 · 모아보기 머리 · 만든사람
    ============================================================ */
 .icon-btn {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
+  margin-top: 2px;
   flex: none;
   display: grid;
   place-items: center;
@@ -1556,8 +1595,6 @@ ul, ol { padding-left: 1.15em; }
 }
 .icon-btn:hover { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
 
-.chapter-title-block { padding: 18px 0 20px; }
-
 .chapter-eyebrow {
   display: block;
   font-family: var(--font-serif);
@@ -1568,12 +1605,12 @@ ul, ol { padding-left: 1.15em; }
   color: var(--text-muted);
 }
 
-.chapter-title-block .screen-title {
+.screen-header .screen-title {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   flex-wrap: wrap;
-  margin: 8px 0 0;
+  margin: 6px 0 0;
 }
 
 /* 완료 여부 — 회색이면 미완료, 초록이면 완료 */
@@ -1588,28 +1625,6 @@ ul, ol { padding-left: 1.15em; }
   color: #fff;
 }
 .chapter-done.on { background: var(--brand); }
-
-/* ── 문법 모아보기 머리 — 제목 옆에 검색창 ── */
-.ref-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  padding: 16px 0 20px;
-}
-.ref-title {
-  flex: none;
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.035em;
-}
-.ref-head .search-bar { flex: 1 1 200px; min-width: 0; }
-.ref-head .search-bar input { padding: 10px 0; font-size: 14px; }
-
-@media (max-width: 480px) {
-  .ref-head { gap: 8px; }
-  .ref-head .search-bar { flex-basis: 100%; order: 3; }
-}
 
 /* ── 만든사람 ── */
 .site-footer {
@@ -1634,7 +1649,7 @@ ul, ol { padding-left: 1.15em; }
 .site-footer a:hover { background: var(--surface); color: var(--text); }
 
 @media (max-width: 560px) {
-  .chapter-title-block { padding: 14px 0 16px; }
+  .screen-header { padding: 12px 0 16px; }
   .part-roman { width: 62px; font-size: 10px; }
   .chip-row-label { width: 62px; }
   .chip-row:not(:has(.chip-row-label)) .chip-list { margin-left: 70px; }

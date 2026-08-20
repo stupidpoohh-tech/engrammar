@@ -2,7 +2,7 @@
 import { MANIFEST, SECTIONS } from "../content/index.js";
 import { sectionStats } from "../engine/review.js";
 import { getItems } from "../engine/storage.js";
-import { IconButton } from "../components/common.jsx";
+import { IconButton, ScreenHeader } from "../components/common.jsx";
 
 export function StatsScreen({ chapters, progress, onBack, onOpenChapter }) {
   const items = getItems();
@@ -18,10 +18,10 @@ export function StatsScreen({ chapters, progress, onBack, onOpenChapter }) {
 
   return (
     <div className="fade-in">
-      <div className="screen-head">
-        <IconButton name="home" label="홈으로" onClick={onBack} />
-      </div>
-      <h1 className="screen-title">학습 통계</h1>
+      <ScreenHeader
+        title="학습 통계"
+        action={<IconButton name="home" label="홈으로" onClick={onBack} />}
+      />
       <p className="screen-sub">모든 기록은 이 브라우저에만 저장됩니다.</p>
 
       <div className="stat-grid">

@@ -92,16 +92,33 @@ export function HomeScreen({ progress, weak, onOpenChapter, onOpenGrammar, onWro
                     <div className="chip-row" key={i}>
                       {row.group && <span className="chip-row-label">{row.group}</span>}
                       <div className="chip-list">
-                        {row.items.map((meta) => (
-                          <button
-                            key={meta.id}
-                            className={"chip" + (progress[meta.id]?.completed ? " done" : "") + (meta.kind === "basic" ? "" : " sum")}
-                            onClick={() => onOpenChapter(meta.id)}
-                            title={meta.title}
-                          >
-                            {meta.short}
-                          </button>
-                        ))}
+                        {row.items.map((meta) => {
+                          const done = progress[meta.id]?.completed;
+                          // 정리·총정리 챕터는 이름 대신 아이콘으로 — 줄이 짧아지고 목차가 정돈된다
+                          if (meta.kind !== "basic") {
+                            return (
+                              <button
+                                key={meta.id}
+                                className={"chip-icon" + (done ? " done" : "") + (meta.kind === "mega" ? " mega" : "")}
+                                onClick={() => onOpenChapter(meta.id)}
+                                aria-label={meta.title}
+                                title={meta.title}
+                              >
+                                <Icon name={meta.kind === "mega" ? "star" : "list"} size={15} />
+                              </button>
+                            );
+                          }
+                          return (
+                            <button
+                              key={meta.id}
+                              className={"chip" + (done ? " done" : "")}
+                              onClick={() => onOpenChapter(meta.id)}
+                              title={meta.title}
+                            >
+                              {meta.short}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   ))}

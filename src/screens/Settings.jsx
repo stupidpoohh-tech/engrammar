@@ -5,7 +5,7 @@
 import { useRef, useState } from "react";
 import { exportAll, importAll, resetAll } from "../engine/storage.js";
 import { Icon } from "../components/Icon.jsx";
-import { IconButton } from "../components/common.jsx";
+import { IconButton, ScreenHeader } from "../components/common.jsx";
 
 export function SettingsScreen({ onBack, refresh }) {
   const fileRef = useRef(null);
@@ -45,10 +45,10 @@ export function SettingsScreen({ onBack, refresh }) {
 
   return (
     <div className="fade-in">
-      <div className="screen-head">
-        <IconButton name="home" label="홈으로" onClick={onBack} />
-      </div>
-      <h1 className="screen-title">기록 관리</h1>
+      <ScreenHeader
+        title="기록 관리"
+        action={<IconButton name="home" label="홈으로" onClick={onBack} />}
+      />
       <p className="screen-sub">
         진도와 오답노트는 이 브라우저에만 저장됩니다. 기기를 옮기거나 브라우저 데이터를
         지우기 전에 파일로 내보내 두세요.

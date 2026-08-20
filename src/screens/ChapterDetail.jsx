@@ -2,7 +2,7 @@
 import { MANIFEST, sectionById } from "../content/index.js";
 import { Blocks } from "../lib/blocks.jsx";
 import { Icon } from "../components/Icon.jsx";
-import { IconButton } from "../components/common.jsx";
+import { IconButton, ScreenHeader } from "../components/common.jsx";
 import { MODES } from "../engine/variants.js";
 
 /** 챕터 번호는 소속 PART 안에서 1부터 센다 — "Part I. Ch5". */
@@ -25,22 +25,19 @@ export function ChapterDetailScreen({ chapter, progress, mode, onSetMode, onBack
 
   return (
     <div className="fade-in">
-      <div className="screen-head">
-        <IconButton name="arrow-left" label="챕터 목록으로" onClick={onBack} />
-      </div>
-
-      <div className="chapter-title-block">
-        <span className="chapter-eyebrow">{label?.text}</span>
-        <h1 className="screen-title">
-          {chapter.title}
+      <ScreenHeader
+        eyebrow={label?.text}
+        title={chapter.title}
+        badge={
           <span
             className={"chapter-done" + (progress?.completed ? " on" : "")}
             title={progress?.completed ? "완료" : "미완료"}
           >
             <Icon name="check" size={12} />
           </span>
-        </h1>
-      </div>
+        }
+        action={<IconButton name="arrow-left" label="챕터 목록으로" onClick={onBack} />}
+      />
 
       <Blocks blocks={chapter.summary} />
 
