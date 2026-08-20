@@ -8,9 +8,25 @@ globalThis.localStorage = {
   clear: () => store.clear(),
 };
 
-globalThis.window = globalThis.window ?? {
-  addEventListener() {},
-  removeEventListener() {},
+// 이벤트를 실제로 붙였다 뗄 수 있어야 탭 간 동기화를 테스트할 수 있다
+const handlers = new Map();
+
+globalThis.window = {
+  addEventListener(type, fn) {
+    if (!handlers.has(type)) handlers.set(type, new Set());
+    handlers.get(type).add(fn);
+  },
+  removeEventListener(type, fn) {
+    handlers.get(type)?.delete(fn);
+  },
 };
 
-export const resetStorage = () => store.clear();
+/** 다른 탭이 localStorage 를 바꾼 상황을 흉내 낸다. */
+export function fireStorageEvent(key) {
+  for (const fn of handlers.get("storage") ?? []) fn({ key });
+}
+
+export function resetStorage() {
+  store.clear();
+  handlers.clear();
+}

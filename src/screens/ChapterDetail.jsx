@@ -64,8 +64,8 @@ export function ChapterDetailScreen({ chapter, progress, mode, onSetMode, onBack
         <button className="btn btn-primary btn-lg btn-block" onClick={onStart}>
           {progress?.completed ? "다시 풀어보기" : "퀴즈 시작하기"} →
         </button>
-        <button className="ref-jump" onClick={() => onOpenGrammar(chapter.id)} style={{ marginTop: 14 }}>
-          <Icon name="book" size={14} /> 이 챕터의 문법을 모아보기에서 열기
+        <button className="ref-jump" onClick={() => onOpenGrammar(chapter.id)}>
+          <Icon name="search" size={14} /> 모아보기에서 열기
         </button>
       </div>
     </div>

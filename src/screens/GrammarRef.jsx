@@ -7,7 +7,7 @@ import { SECTIONS } from "../content/index.js";
 import { search } from "../lib/search.js";
 import { Blocks } from "../lib/blocks.jsx";
 import { Icon } from "../components/Icon.jsx";
-import { IconButton, ScreenHeader, KindTag, EmptyNote } from "../components/common.jsx";
+import { IconButton, ScreenHeader, KindMark, EmptyNote } from "../components/common.jsx";
 import { getPrefs, setPref } from "../engine/storage.js";
 import { chapterLabel } from "./ChapterDetail.jsx";
 
@@ -69,7 +69,7 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
         <SearchResults results={results} query={query} onSelect={(id) => { setQuery(""); onSelect(id); }} />
       ) : (
         <>
-          <div className="grammar-ref-nav" style={{ marginTop: 20 }}>
+          <div className="grammar-ref-nav">
             {grouped.map((sec) => {
               const folded = collapsed.includes(sec.id);
               return (
@@ -87,9 +87,8 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
                           onClick={() => onSelect(ch.id)}
                           className={"ref-chapter-btn" + (ch.id === active?.id ? " active" : "")}
                         >
-                          {ch.kind === "review" && <span className="ref-kind-mark review">정리</span>}
-                          {ch.kind === "mega" && <span className="ref-kind-mark mega">마스터</span>}
                           <span className="ref-chapter-title">{ch.title}</span>
+                          <KindMark kind={ch.kind} />
                         </button>
                       ))}
                     </div>
@@ -103,7 +102,7 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
             <div id="grammar-ref-content" ref={contentRef} style={{ marginTop: 32 }}>
               <div className="chapter-eyebrow">
                 <span>{chapterLabel(active.id)?.roman}</span>
-                <KindTag kind={active.kind} />
+                <KindMark kind={active.kind} />
               </div>
               <h2 className="ref-content-title">{active.title}</h2>
               <Blocks blocks={active.summary} />
@@ -131,7 +130,7 @@ function SearchResults({ results, query, onSelect }) {
             <div className="search-result-head">
               <span className="search-result-part">{chapterLabel(chapter.id)?.roman}</span>
               <span>{chapter.title}</span>
-              <KindTag kind={chapter.kind} />
+              <KindMark kind={chapter.kind} />
             </div>
             {snippet && (
               <div className="search-snippet">

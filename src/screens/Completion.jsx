@@ -40,10 +40,7 @@ export function CompletionScreen({ title, result, isReview, onBackHome, onRetry 
       </div>
 
       {result.score < result.total && (
-        <div style={{ marginTop: 4, fontSize: 13, color: "var(--text-muted)", textAlign: "center", lineHeight: 1.7 }}>
-          틀린 문제는 오답노트에 담겼어요.<br />
-          홈에서 <b style={{ color: "var(--text-soft)" }}>틀린 문제 복습</b>으로 다시 만날 수 있습니다.
-        </div>
+        <p className="completion-note">틀린 문제는 오답노트에 담겼어요.</p>
       )}
 
       <div style={{ display: "flex", gap: 10, marginTop: 16, width: "100%", maxWidth: 360 }}>

@@ -79,10 +79,19 @@ export function BoxMeter({ box }) {
   );
 }
 
-export function KindTag({ kind }) {
-  if (kind === "review") return <span className="tag tag-review">정리</span>;
-  if (kind === "mega") return <span className="tag tag-mega">마스터</span>;
-  return null;
+/**
+ * 정리(review) · 총정리(mega) 표시. 홈 목차와 같은 아이콘을 쓴다 —
+ * 화면마다 글자 태그와 아이콘이 섞이지 않게.
+ */
+export function KindMark({ kind }) {
+  if (kind !== "review" && kind !== "mega") return null;
+  const mega = kind === "mega";
+  const label = mega ? "총정리" : "정리";
+  return (
+    <span className={"kind-mark" + (mega ? " mega" : "")} title={label} aria-label={label}>
+      <Icon name={mega ? "star" : "list"} size={13} />
+    </span>
+  );
 }
 
 export function EmptyNote({ children }) {

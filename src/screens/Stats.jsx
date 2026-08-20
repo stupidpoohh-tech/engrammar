@@ -22,7 +22,6 @@ export function StatsScreen({ chapters, progress, onBack, onOpenChapter }) {
         title="학습 통계"
         action={<IconButton name="home" label="홈으로" onClick={onBack} />}
       />
-      <p className="screen-sub">모든 기록은 이 브라우저에만 저장됩니다.</p>
 
       <div className="stat-grid">
         <div className="stat-tile">

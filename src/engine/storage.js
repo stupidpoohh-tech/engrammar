@@ -40,9 +40,21 @@ function emit() {
 }
 
 /** React 의 useSyncExternalStore 용. 다른 탭의 변경도 함께 받는다. */
+function dropCaches() {
+  progressCache = null;
+  itemsCache = null;
+  prefsCache = null;
+}
+
 export function subscribe(fn) {
   listeners.add(fn);
-  const onStorage = (e) => { if (!e.key || e.key.startsWith("engrammar.")) fn(); };
+  // 다른 탭에서 바뀐 경우 캐시를 먼저 버려야 한다.
+  // 버리지 않으면 getSnapshot 이 옛 객체를 그대로 돌려줘 React 가 다시 그리지 않는다.
+  const onStorage = (e) => {
+    if (e.key && !e.key.startsWith("engrammar.")) return;
+    dropCaches();
+    fn();
+  };
   window.addEventListener("storage", onStorage);
   return () => { listeners.delete(fn); window.removeEventListener("storage", onStorage); };
 }

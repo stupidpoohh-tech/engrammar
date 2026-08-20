@@ -146,7 +146,7 @@ export function App() {
           key={`review:${mode}:${items.length}`}
           items={items}
           mode={mode}
-          subtitle="복습 · 한국어 문장"
+          subtitle="복습"
           onExit={go.home}
           onComplete={finishReview}
         />

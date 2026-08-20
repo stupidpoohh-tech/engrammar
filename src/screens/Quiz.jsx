@@ -61,7 +61,8 @@ export function QuizScreen({ items, mode, subtitle, onExit, onComplete }) {
 
       <div className="quiz-body">
         <div className="quiz-prompt">
-          <div className="quiz-prompt-label">{subtitle ?? "한국어 문장"}</div>
+          {/* 라벨은 뜻이 있을 때만 — 매 문항 "한국어 문장" 을 반복할 이유가 없다 */}
+          {subtitle && <div className="quiz-prompt-label">{subtitle}</div>}
           <div className="quiz-prompt-text">{question.ko}</div>
           {item.isRetry && <div className="quiz-hint" style={{ marginTop: 12 }}>↻ 다시 한 번 — 이번엔 맞춰보세요</div>}
         </div>
@@ -188,7 +189,7 @@ function TypingQuestion({ state, question, dispatch }) {
         />
         <div className="typing-meta">
           <span>단어 {words}개 정도</span>
-          <span>대소문자·축약형은 가리지 않아요</span>
+          <span>대소문자·축약형 무관</span>
         </div>
       </div>
       <KeyHint keys={[["Enter"]]} labels={["확인"]} />
@@ -237,10 +238,8 @@ function ErrorQuestion({ state, question, dispatch }) {
   const { errIndex, errFix, answered, result } = state;
   return (
     <>
-      <div className="quiz-hint" style={{ marginTop: 18 }}>
-        어법에 맞지 않는 곳을 눌러 표시하고, 어떻게 고칠지 적어보세요.
-      </div>
-      <div className="error-tokens" style={{ marginTop: 10 }}>
+      <div className="quiz-hint">틀린 곳을 누르고, 고칠 형태를 적으세요</div>
+      <div className="error-tokens">
         {question.tokens.map((tok, i) => {
           let cls = "error-token";
           if (answered) {
@@ -256,7 +255,7 @@ function ErrorQuestion({ state, question, dispatch }) {
       </div>
 
       <div className="error-fix">
-        <span className="error-fix-label">→ 이렇게 고쳐야 합니다</span>
+        <span className="error-fix-label">→</span>
         <input
           className="text-field"
           value={errFix}
@@ -290,10 +289,7 @@ function ResultPanel({ state, question }) {
         </div>
       )}
       {question.explanation && (
-        <div className="explanation">
-          <div className="explanation-title">문법 설명</div>
-          <div><Inline text={question.explanation} /></div>
-        </div>
+        <div className="explanation"><Inline text={question.explanation} /></div>
       )}
     </div>
   );

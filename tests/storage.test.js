@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { resetStorage } from "./setup-dom.js";
+import { resetStorage, fireStorageEvent } from "./setup-dom.js";
 
 // 저장소는 모듈 안에 캐시를 두므로 테스트마다 새로 가져온다
 async function freshStorage() {
@@ -100,6 +100,40 @@ describe("내보내기 / 불러오기", () => {
     S.resetAll();
     expect(S.weakKeys()).toEqual([]);
     expect(S.getProgress()).toEqual({});
+  });
+});
+
+describe("다른 탭에서 바뀌었을 때", () => {
+  // 캐시를 비우지 않으면 getSnapshot 이 옛 객체를 그대로 돌려줘 화면이 갱신되지 않는다
+  it("storage 이벤트가 오면 다시 읽어 온다", async () => {
+    const S = await freshStorage();
+    const seen = [];
+    S.subscribe(() => seen.push(S.getProgress()));
+    expect(S.getProgress()).toEqual({});
+
+    // 다른 탭이 쓴 것처럼 값을 직접 넣고 이벤트를 발생시킨다
+    localStorage.setItem("engrammar.progress.v2", JSON.stringify({ ch: { completed: true, best: { score: 3, total: 5 } } }));
+    fireStorageEvent("engrammar.progress.v2");
+
+    expect(seen.length).toBe(1);
+    expect(S.getProgress().ch).toMatchObject({ completed: true });
+  });
+
+  it("문항 이력도 다시 읽는다", async () => {
+    const S = await freshStorage();
+    S.subscribe(() => {});
+    expect(S.weakKeys()).toEqual([]);
+    localStorage.setItem("engrammar.items.v2", JSON.stringify({ "ch/q1": { right: 0, wrong: 1, box: 0, lastAt: 1 } }));
+    fireStorageEvent("engrammar.items.v2");
+    expect(S.weakKeys()).toEqual(["ch/q1"]);
+  });
+
+  it("우리 것이 아닌 키는 무시한다", async () => {
+    const S = await freshStorage();
+    let calls = 0;
+    S.subscribe(() => { calls++; });
+    fireStorageEvent("다른앱.something");
+    expect(calls).toBe(0);
   });
 });
 

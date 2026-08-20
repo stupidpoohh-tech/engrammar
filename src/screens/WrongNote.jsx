@@ -17,9 +17,7 @@ export function WrongNoteScreen({ chapters, onBack, onReview, onOpenChapter, ref
         title="오답노트"
         action={<IconButton name="home" label="홈으로" onClick={onBack} />}
       />
-      <p className="screen-sub">
-        한 번이라도 틀린 문항이 모입니다. 연속으로 {MASTER_BOX}번 맞히면 목록에서 빠져요.
-      </p>
+      <p className="screen-sub">연속 {MASTER_BOX}번 맞히면 목록에서 빠집니다.</p>
 
       {items.length === 0 ? (
         <EmptyNote>
@@ -42,16 +40,17 @@ export function WrongNoteScreen({ chapters, onBack, onReview, onOpenChapter, ref
                     <button className="wrong-row-chapter" onClick={() => onOpenChapter(chapter.id)}>
                       {chapterLabel(chapter.id)?.roman} · {chapter.title}
                     </button>
-                    <span>틀림 {stat.wrong}회</span>
+                    <span className="wrong-row-count">틀림 {stat.wrong}회</span>
                     <BoxMeter box={stat.box} />
                   </div>
                 </div>
                 <button
-                  className="btn btn-soft btn-sm"
+                  className="icon-btn"
                   onClick={() => { clearItem(chapter.id, question.id); refresh?.(); }}
-                  title="이 문항을 오답노트에서 지웁니다"
+                  aria-label="오답노트에서 지우기"
+                  title="오답노트에서 지우기"
                 >
-                  <Icon name="trash" size={13} />
+                  <Icon name="trash" size={15} />
                 </button>
               </div>
             ))}
