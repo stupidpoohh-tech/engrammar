@@ -106,9 +106,7 @@ export function GrammarRefScreen({ chapters, activeId, onSelect, onBack, onQuiz 
                 <span>{chapterLabel(active.id)?.roman}</span>
                 <KindTag kind={active.kind} />
               </div>
-              <h2 style={{ fontFamily: "var(--font-serif)", margin: "10px 0 18px", fontSize: 26, fontWeight: 600, letterSpacing: "-0.02em" }}>
-                {active.title}
-              </h2>
+              <h2 className="ref-content-title">{active.title}</h2>
               <Blocks blocks={active.summary} />
               <button className="ref-jump" onClick={() => onQuiz(active.id)}>
                 <Icon name="pencil" size={14} /> 이 문법으로 퀴즈 풀기

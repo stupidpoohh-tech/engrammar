@@ -55,46 +55,36 @@ export function HomeScreen({ progress, weak, onOpenChapter, onOpenGrammar, onRev
 
         <div className="quick-actions">
           <button className={"quick-card" + (weak > 0 ? " warn" : "")} onClick={onReview} disabled={weak === 0}>
-            <span className="quick-card-mark"><Icon name="refresh" size={19} /></span>
+            <span className="quick-card-mark"><Icon name="refresh" size={18} /></span>
             <span className="quick-card-body">
               <span className="quick-card-title">틀린 문제 복습</span>
               <span className="quick-card-meta">
-                {weak > 0 ? `${weak}문제가 기다리고 있어요` : "복습할 문제가 없어요"}
+                {weak > 0 ? `${weak}문제 대기` : "복습할 문제 없음"}
               </span>
             </span>
           </button>
           <button className="quick-card" onClick={onWrongNote}>
-            <span className="quick-card-mark"><Icon name="target" size={19} /></span>
+            <span className="quick-card-mark"><Icon name="target" size={18} /></span>
             <span className="quick-card-body">
               <span className="quick-card-title">오답노트</span>
-              <span className="quick-card-meta">틀렸던 문제를 모아서 보기</span>
+              <span className="quick-card-meta">다시 볼 문제</span>
+            </span>
+          </button>
+          <button className="quick-card" onClick={onOpenGrammar}>
+            <span className="quick-card-mark"><Icon name="search" size={18} /></span>
+            <span className="quick-card-body">
+              <span className="quick-card-title">문법 모아보기</span>
+              <span className="quick-card-meta">{total}챕터 검색</span>
+            </span>
+          </button>
+          <button className="quick-card" onClick={onStats}>
+            <span className="quick-card-mark"><Icon name="chart" size={18} /></span>
+            <span className="quick-card-body">
+              <span className="quick-card-title">학습 통계</span>
+              <span className="quick-card-meta">단원별 정답률</span>
             </span>
           </button>
         </div>
-      </div>
-
-      <div className="section">
-        <div className="section-head">
-          <div className="section-roman">APPENDIX</div>
-          <h2 className="section-name">문법 모아보기</h2>
-          <div className="section-desc">퀴즈 없이 정리만 읽기 · 검색 가능</div>
-        </div>
-        <button className="grammar-link" onClick={onOpenGrammar} style={{ marginTop: 16 }}>
-          <div className="grammar-link-mark"><Icon name="search" size={18} /></div>
-          <div className="grammar-link-body">
-            <div className="grammar-link-title">문법 검색하고 정리 읽기</div>
-            <div className="grammar-link-meta">{total}개 챕터의 설명·예문을 한 번에 검색</div>
-          </div>
-          <Icon name="arrow-right" size={16} />
-        </button>
-        <button className="grammar-link" onClick={onStats} style={{ marginTop: 10 }}>
-          <div className="grammar-link-mark"><Icon name="chart" size={18} /></div>
-          <div className="grammar-link-body">
-            <div className="grammar-link-title">학습 통계</div>
-            <div className="grammar-link-meta">단원별 정답률과 약한 곳 확인</div>
-          </div>
-          <Icon name="arrow-right" size={16} />
-        </button>
       </div>
 
       {sections.map((sec) => {
@@ -108,14 +98,13 @@ export function HomeScreen({ progress, weak, onOpenChapter, onOpenGrammar, onRev
               onClick={() => toggle(sec.id)}
               aria-expanded={!folded}
             >
-              <div className="section-roman">{sec.roman}</div>
-              <h2 className="section-name">
-                {sec.name}
+              <span className="section-head-line">
+                <span className="section-roman">{sec.roman}</span>
+                <h2 className="section-name">{sec.name}</h2>
+                <span className="section-count">{done}/{sec.items.length}</span>
                 <span className="section-toggle-icon" aria-hidden="true">{folded ? "▸" : "▾"}</span>
-              </h2>
-              <div className="section-desc">
-                {sec.desc} · <span style={{ opacity: 0.8 }}>{done}/{sec.items.length}</span>
-              </div>
+              </span>
+              <span className="section-desc">{sec.desc}</span>
             </button>
             {!folded && (
               <div className="chapter-list">

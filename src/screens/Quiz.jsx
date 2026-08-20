@@ -59,17 +59,17 @@ export function QuizScreen({ items, mode, subtitle, onExit, onComplete }) {
         <ProgressBar value={state.cursor + (state.answered ? 1 : 0)} max={state.queue.length} />
       </div>
 
-      <div className="quiz-prompt">
-        <div className="quiz-prompt-label">{subtitle ?? "한국어 문장"}</div>
-        <div className="quiz-prompt-text">{question.ko}</div>
-        {item.isRetry && <div className="quiz-hint" style={{ marginTop: 12 }}>↻ 다시 한 번 — 이번엔 맞춰보세요</div>}
+      <div className="quiz-body">
+        <div className="quiz-prompt">
+          <div className="quiz-prompt-label">{subtitle ?? "한국어 문장"}</div>
+          <div className="quiz-prompt-text">{question.ko}</div>
+          {item.isRetry && <div className="quiz-hint" style={{ marginTop: 12 }}>↻ 다시 한 번 — 이번엔 맞춰보세요</div>}
+        </div>
+
+        <QuestionBody state={state} question={question} dispatch={dispatch} />
+
+        {state.answered && <ResultPanel state={state} question={question} />}
       </div>
-
-      <QuestionBody state={state} question={question} dispatch={dispatch} />
-
-      {state.answered && <ResultPanel state={state} question={question} />}
-
-      <div className="quiz-spacer" />
 
       <div className="quiz-footer">
         {!state.answered ? (
@@ -124,7 +124,7 @@ function CardQuestion({ state, question, dispatch }) {
         {(question.prefix ?? []).map((w, i) => <span className="sentence-word" key={"p" + i}>{w}</span>)}
         <span className={slotClass}>
           {picked.length === 0 ? (
-            <span style={{ color: "var(--text-faint)", fontSize: 14, fontFamily: "var(--font-eng)", fontStyle: "italic" }}>?</span>
+            <span className="blank-placeholder">?</span>
           ) : (
             picked.map((bankIdx, slot) => (
               <span
@@ -205,7 +205,7 @@ function ChoiceQuestion({ state, question, dispatch }) {
           tok === null ? (
             <span key={i} className={"sentence-blank" + (choice !== null ? " has-tokens" : "") + (answered ? (result.correct ? " correct" : " wrong") : "")}>
               {choice === null
-                ? <span style={{ color: "var(--text-faint)", fontStyle: "italic", fontSize: 14 }}>?</span>
+                ? <span className="blank-placeholder">?</span>
                 : <span className="token-in-slot">{question.choices[choice]}</span>}
             </span>
           ) : (

@@ -57,24 +57,24 @@ export function ChapterDetailScreen({ chapter, progress, mode, onSetMode, onBack
 
       <Blocks blocks={chapter.summary} />
 
-      <div style={{ marginTop: 28 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
-          <span style={{ fontSize: 13, color: "var(--text-muted)" }}>푸는 방식</span>
-          <div className="mode-toggle" role="group" aria-label="푸는 방식">
-            {MODES.map((m) => (
-              <button
-                key={m.id}
-                className={mode === m.id ? "on" : ""}
-                onClick={() => onSetMode(m.id)}
-                aria-pressed={mode === m.id}
-              >
-                {m.name}
-              </button>
-            ))}
+      <div className="chapter-start">
+        <div className="mode-picker">
+          <div className="mode-picker-row">
+            <span className="mode-picker-label">푸는 방식</span>
+            <div className="mode-toggle" role="group" aria-label="푸는 방식">
+              {MODES.map((m) => (
+                <button
+                  key={m.id}
+                  className={mode === m.id ? "on" : ""}
+                  onClick={() => onSetMode(m.id)}
+                  aria-pressed={mode === m.id}
+                >
+                  {m.name}
+                </button>
+              ))}
+            </div>
           </div>
-          <span style={{ fontSize: 12.5, color: "var(--text-faint)" }}>
-            {MODES.find((m) => m.id === mode)?.desc}
-          </span>
+          <p className="mode-picker-desc">{MODES.find((m) => m.id === mode)?.desc}</p>
         </div>
 
         <button className="btn btn-primary btn-lg btn-block" onClick={onStart}>
