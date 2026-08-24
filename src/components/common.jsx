@@ -46,7 +46,7 @@ export function ScreenHeader({ eyebrow, title, badge, action, children }) {
   );
 }
 
-const PORTFOLIO = "https://dada-portfolio.stupidpoohh.workers.dev/";
+const PORTFOLIO = "https://dada-town.com/";
 
 export function SiteFooter() {
   return (
